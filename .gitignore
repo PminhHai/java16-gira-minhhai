@@ -15,3 +15,7 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+*.log
+*.log
+logs/gira-log.logs
+*.logs
