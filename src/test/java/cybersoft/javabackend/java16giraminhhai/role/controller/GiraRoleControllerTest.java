@@ -1,5 +1,6 @@
 package cybersoft.javabackend.java16giraminhhai.role.controller;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -18,6 +19,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import cybersoft.javabackend.java16giraminhhai.role.model.GiraRole;
 import cybersoft.javabackend.java16giraminhhai.role.service.GiraRoleService;
 
 @SpringBootTest
@@ -55,13 +57,33 @@ public class GiraRoleControllerTest {
 	@WithMockUser
 	@Test
 	public void shouldNotFoundRoleWithUnexistedId () throws Exception {
-		
+			String roleId = UUID.randomUUID().toString();
+			when(giraRoleService.findById(roleId)).thenReturn(null);
+			
+			mockMvc.perform(get("/api/v1/roles/" + roleId))
+					.andDo(print())
+					.andExpect(status().isBadRequest())
+					.andExpect(content().string(containsString("Role is not existed.")));
 	}
 	
 	@WithMockUser
 	@Test
-	public void shouldFindRoleSucessfullyWithExistedId () {
+	public void shouldFindRoleSucessfullyWithExistedId () throws Exception {
+		String roleId = "61861d02-6b11-4228-adc4-a7f0371697d3";
+		GiraRole role = GiraRole.builder()
+						.id(UUID.fromString(roleId))
+						.code("INTER")
+						.description("Intership Role")
+						.build();
 		
+		when(giraRoleService.findById(roleId)).thenReturn(role);
+		
+		String roleJson = "{\"id\":\"61861d02-6b11-4228-adc4-a7f0371697d3\",\"version\":0,\"createdAt\":null,\"createdBy\":null,\"lastModifiedAt\":null,\"lastModifiedBy\":null,\"code\":\"INTER\",\"description\":\"Intership Role\"}";
+		
+		mockMvc.perform(get("/api/v1/roles/" + roleId))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(content().string(containsString(roleJson)));
 	}
 	
 }

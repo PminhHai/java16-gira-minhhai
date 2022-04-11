@@ -17,6 +17,7 @@ import cybersoft.javabackend.java16giraminhhai.role.mapper.GiraRoleMapper;
 import cybersoft.javabackend.java16giraminhhai.role.model.GiraRole;
 import cybersoft.javabackend.java16giraminhhai.role.repository.GiraRoleRepository;
 
+@DisplayName("Gira Role Service")
 @SpringBootTest
 public class GiraRoleServiceTest {
 	@Mock
