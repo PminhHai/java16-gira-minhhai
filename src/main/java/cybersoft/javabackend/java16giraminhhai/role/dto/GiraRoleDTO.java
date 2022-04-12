@@ -7,12 +7,14 @@ import javax.validation.constraints.Size;
 
 import cybersoft.javabackend.java16giraminhhai.role.validation.annotation.UniqueCodeRole;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @SuperBuilder
+@NoArgsConstructor
 public class GiraRoleDTO {
 	private UUID id;
 	

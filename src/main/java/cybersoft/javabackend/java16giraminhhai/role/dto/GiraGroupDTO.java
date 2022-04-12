@@ -6,11 +6,16 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import cybersoft.javabackend.java16giraminhhai.role.validation.annotation.UniqueCodeGroup;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
+@SuperBuilder
+@NoArgsConstructor
 public class GiraGroupDTO {
 	private UUID id;
 	
