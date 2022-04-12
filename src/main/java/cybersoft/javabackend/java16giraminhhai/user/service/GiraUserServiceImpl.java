@@ -54,6 +54,7 @@ public class GiraUserServiceImpl implements GiraUserService {
 	@Override
 	public List<GiraUserRolesDTO> findUserWithRolesByUsername(String username) {
 		return repository.findUserWithRolesByUsername(username);
+		
 	}
 
 	@Override
