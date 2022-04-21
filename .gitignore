@@ -19,3 +19,4 @@ buildNumber.properties
 *.log
 logs/gira-log.logs
 *.logs
+logs/gira-log.logs
